@@ -1,0 +1,19 @@
+---
+name: Catalyst-Action-RenderView
+version: 0.01
+author:
+  - 'Marcus Ramberg <marcus@thefeed.no>'
+abstract: Sensible default end action.
+license: perl
+resources:
+  license: http://dev.perl.org/licenses/
+requires:
+  Catalyst: 5.7
+provides:
+  Catalyst::Action::RenderView:
+    file: lib/Catalyst/Action/RenderView.pm
+    version: 0.01
+generated_by: Module::Build version 0.2801
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.2.html
+  version: 1.2
