@@ -1,6 +1,6 @@
 ---
 name: Catalyst-Action-RenderView
-version: 0.02
+version: 0.03
 author:
   - 'Marcus Ramberg <marcus@thefeed.no>'
 abstract: Sensible default end action.
@@ -12,7 +12,7 @@ requires:
 provides:
   Catalyst::Action::RenderView:
     file: lib/Catalyst/Action/RenderView.pm
-    version: 0.02
+    version: 0.03
 generated_by: Module::Build version 0.2801
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.2.html
