@@ -1,6 +1,9 @@
 package Catalyst::Action::RenderView;
 
-our $VERSION='0.04';
+use strict;
+use warnings;
+
+our $VERSION = '0.05';
 
 use base 'Catalyst::Action';
 
@@ -41,16 +44,23 @@ response body. It also allows you to pass C<dump_info=1> to the url in
 order to force a debug screen, while in debug mode.
 
 If you have more than one view, you can specify which one to use with
-the C<default_view> config setting (see L<Catalyst/"$c->view($name)">.)
+the C<default_view> config setting (see L<Catalyst>'s C<$c->view($name)>
+method).
 
 =head1 METHODS
 
-=over 4
-
-=item end
+=head2 end
 
 The default C<end> action. You can override this as required in your
 application class; normal inheritance applies.
+
+=head1 INTERNAL METHODS
+
+=head2 execute
+
+Dispatches control to superclasses, then forwards to the default View.
+
+See L<Catalyst::Action/METHODS/action>.
 
 =head1 EXTENDING
 
@@ -72,8 +82,6 @@ you can set it up like this:
       $c->forward('render');
       # do stuff here
     }
-
-=back
 
 =head1 AUTHOR
 
