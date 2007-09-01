@@ -14,6 +14,6 @@ no_index:
     - t
 requires: 
   Catalyst::Runtime: 5.70
-  Data::Visitor: 0
+  Data::Visitor: 0.08
   Test::More: 0
-version: 0.06
+version: 0.07
