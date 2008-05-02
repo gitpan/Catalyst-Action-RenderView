@@ -1,6 +1,8 @@
 --- 
 abstract: Sensible default end action.
 author: Marcus Ramberg <marcus@thefeed.no>
+build_requires: 
+  HTTP::Request::AsCGI: 0
 distribution_type: module
 generated_by: Module::Install version 0.67
 license: perl

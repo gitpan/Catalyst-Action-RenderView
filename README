@@ -11,7 +11,7 @@ DESCRIPTION
     order to force a debug screen, while in debug mode.
 
     If you have more than one view, you can specify which one to use with
-    the "default_view" config setting (see Catalyst's "$c-"view($name)>
+    the "default_view" config setting (see Catalyst's "$c->view($name)"
     method).
 
 METHODS
@@ -24,6 +24,23 @@ INTERNAL METHODS
     Dispatches control to superclasses, then forwards to the default View.
 
     See "METHODS/action" in Catalyst::Action.
+
+SCRUBBING OUTPUT
+    When you force debug with dump_info=1, RenderView is capable of removing
+    classes from the objects in your stash. By default it will replace any
+    DBIx::Class resultsource objects with the class name, which cleans up
+    the debug output considerably, but you can change what gets scrubbed by
+    setting a list of classes in $c->config->{debug}->{ignore_classes}. For
+    instance:
+
+        $c->config->{debug}->{ignore_classes}=[];
+
+    To disable the functionality. You can also set
+    config->{debug}->{scrubber_func} to change what it does with the
+    classes. For instance, this will undef it instead of putting in the
+    class name:
+
+        $c->config->{debug}->{scrubber_func}=sub { undef $_ };
 
 EXTENDING
     To add something to an "end" action that is called before rendering,
