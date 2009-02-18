@@ -30,17 +30,23 @@ SCRUBBING OUTPUT
     classes from the objects in your stash. By default it will replace any
     DBIx::Class resultsource objects with the class name, which cleans up
     the debug output considerably, but you can change what gets scrubbed by
-    setting a list of classes in $c->config->{debug}->{ignore_classes}. For
-    instance:
+    setting a list of classes in
+    $c->config->{'Action::RenderView'}->{ignore_classes}. For instance:
 
-        $c->config->{debug}->{ignore_classes}=[];
+        $c->config->{'Action::RenderView'}->{ignore_classes}=[];
 
     To disable the functionality. You can also set
-    config->{debug}->{scrubber_func} to change what it does with the
-    classes. For instance, this will undef it instead of putting in the
-    class name:
+    config->{'Action::RenderView'}->{scrubber_func} to change what it does
+    with the classes. For instance, this will undef it instead of putting in
+    the class name:
 
-        $c->config->{debug}->{scrubber_func}=sub { undef $_ };
+        $c->config->{'Action::RenderView'}->{scrubber_func}=sub { undef $_ };
+
+  Deprecation notice
+    This plugin used to be configured by setting "$c->config->{debug}". That
+    configuration key is still supported in this release, but is deprecated,
+    please use the 'Action::RenderView' namespace as shown above for
+    configuration in new code.
 
 EXTENDING
     To add something to an "end" action that is called before rendering,
