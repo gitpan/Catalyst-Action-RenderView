@@ -3,9 +3,12 @@ abstract: 'Sensible default end action.'
 author:
   - 'Marcus Ramberg <marcus@thefeed.no>'
 build_requires:
+  ExtUtils::MakeMaker: 6.42
   HTTP::Request::AsCGI: 0
+configure_requires:
+  ExtUtils::MakeMaker: 6.42
 distribution_type: module
-generated_by: 'Module::Install version 0.77'
+generated_by: 'Module::Install version 0.85'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -17,9 +20,9 @@ no_index:
     - t
 requires:
   Catalyst::Runtime: 5.70
-  Data::Visitor: 0.08
+  Data::Visitor: 0.24
   MRO::Compat: 0
   Test::More: 0
 resources:
   license: http://dev.perl.org/licenses/
-version: 0.09
+version: 0.10
