@@ -6,25 +6,12 @@ use warnings;
 use FindBin;
 use lib "$FindBin::Bin/lib";
 
-use Test::More tests => 15;
+use Test::More 0.88;
 use Catalyst::Test 'TestApp';
 
-BEGIN {
-    no warnings 'redefine';
-
-    *Catalyst::Test::local_request = sub {
-        my ( $class, $request ) = @_;
-
-        require HTTP::Request::AsCGI;
-        my $cgi = HTTP::Request::AsCGI->new( $request, %ENV )->setup;
-
-        $class->handle_request;
-
-        return $cgi->restore->response;
-    };
-}
-
 run_tests();
+
+done_testing;
 
 sub run_tests {
 
@@ -62,12 +49,26 @@ sub run_tests {
         my $request  =
           HTTP::Request->new( GET => 'http://localhost:3000/test_skipview' );
 
-        ok( my $response = request($request), 'Request' );
-        ok( $response->is_success, 'Response Successful 2xx' );
-        is( $response->header( 'Content-Type' ), 'text/html; charset=utf-8', 'Content Type' );
-        is( $response->code, 200, 'Response Code' );
+          ok( my $response = request($request), 'Request' );
+          ok( $response->is_success, 'Response Successful 2xx' );
+          is( $response->header( 'Content-Type' ), 'text/html; charset=utf-8', 'Content Type' );
+          is( $response->code, 200, 'Response Code' );
 
-        is( $response->content, $expected, 'Content OK' );
+          is( $response->content, $expected, 'Content OK' );
+    }
+
+    # test X-Sendfile case
+    {
+        my $request  =
+          HTTP::Request->new( GET => 'http://localhost:3000/test_definedbody_skipsview' );
+
+      ok( my $response = request($request), 'Request' );
+      ok( $response->is_success, 'Response Successful 2xx' );
+      is( $response->header( 'Content-Type' ), 'text/html; charset=utf-8', 'Content Type' );
+      is( $response->code, 200, 'Response Code' );
+
+      is( $response->content, '', 'Content OK' );
+      is( $response->header('X-Sendfile'), '/some/file/path', 'X-Sendfile header present' );
     }
 
 }

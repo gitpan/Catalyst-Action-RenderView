@@ -6,13 +6,15 @@ SYNOPSIS
 
 DESCRIPTION
     This action implements a sensible default end action, which will forward
-    to the first available view, unless status is set to 3xx, or there is a
-    response body. It also allows you to pass "dump_info=1" to the url in
-    order to force a debug screen, while in debug mode.
+    to the first available view, unless "$c->res->status" is a 3xx code
+    (redirection, not modified, etc.), 204 (no content), or "$c->res->body"
+    has already been set. It also allows you to pass "dump_info=1" to the
+    url in order to force a debug screen, while in debug mode.
 
     If you have more than one view, you can specify which one to use with
-    the "default_view" config setting (see Catalyst's "$c->view($name)"
-    method).
+    the "default_view" config setting and the "current_view" and
+    "current_view_instance" stash keys (see Catalyst's "$c->view($name)"
+    method -- this module simply calls "$c->view" with no argument).
 
 METHODS
   end
@@ -33,14 +35,14 @@ SCRUBBING OUTPUT
     setting a list of classes in
     $c->config->{'Action::RenderView'}->{ignore_classes}. For instance:
 
-        $c->config->{'Action::RenderView'}->{ignore_classes}=[];
+        $c->config->{'Action::RenderView'}->{ignore_classes} = [];
 
     To disable the functionality. You can also set
     config->{'Action::RenderView'}->{scrubber_func} to change what it does
     with the classes. For instance, this will undef it instead of putting in
     the class name:
 
-        $c->config->{'Action::RenderView'}->{scrubber_func}=sub { undef $_ };
+        $c->config->{'Action::RenderView'}->{scrubber_func} = sub { undef $_ };
 
   Deprecation notice
     This plugin used to be configured by setting "$c->config->{debug}". That

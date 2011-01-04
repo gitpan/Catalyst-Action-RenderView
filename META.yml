@@ -5,10 +5,11 @@ author:
 build_requires:
   ExtUtils::MakeMaker: 6.42
   HTTP::Request::AsCGI: 0
+  Test::More: 0.88
 configure_requires:
   ExtUtils::MakeMaker: 6.42
 distribution_type: module
-generated_by: 'Module::Install version 0.910'
+generated_by: 'Module::Install version 1.00'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -19,11 +20,11 @@ no_index:
     - inc
     - t
 requires:
-  Catalyst::Runtime: 5.70
+  Catalyst::Runtime: 5.80030
   Data::Visitor: 0.24
   MRO::Compat: 0
   Test::More: 0
 resources:
   license: http://dev.perl.org/licenses/
   repository: http://dev.catalyst.perl.org/repos/Catalyst/Catalyst-Action-RenderView/trunk/
-version: 0.14
+version: 0.15
